@@ -50,6 +50,8 @@ func (nc *dummyNCC) IPVSGetServices() ([]*ipvs.Service, error)                  
 func (nc *dummyNCC) IPVSGetService(svc *ipvs.Service) (*ipvs.Service, error)              { return nil, nil }
 func (nc *dummyNCC) IPVSAddService(svc *ipvs.Service) error                               { return nil }
 func (nc *dummyNCC) IPVSUpdateService(svc *ipvs.Service) error                            { return nil }
+func (nc *dummyNCC) IPVSGetServiceData(svc *ipvs.Service) (*ipvs.ServiceData, error)      { return nil, nil }
+func (nc *dummyNCC) IPVSSetServiceData(svc *ipvs.Service, data *ipvs.ServiceData) error   { return nil }
 func (nc *dummyNCC) IPVSDeleteService(svc *ipvs.Service) error                            { return nil }
 func (nc *dummyNCC) IPVSAddDestination(svc *ipvs.Service, dst *ipvs.Destination) error    { return nil }
 func (nc *dummyNCC) IPVSUpdateDestination(svc *ipvs.Service, dst *ipvs.Destination) error { return nil }
