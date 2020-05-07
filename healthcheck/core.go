@@ -214,6 +214,7 @@ type Check struct {
 
 	lock      sync.RWMutex
 	blocking  bool
+	dryrun    bool
 	start     time.Time
 	failed    uint64
 	failures  uint64
@@ -308,7 +309,13 @@ func (hc *Check) healthcheck() {
 		return
 	}
 	start := time.Now()
-	result := hc.execute()
+
+	var result *Result
+	if hc.dryrun {
+		result = complete(start, "", true, nil)
+	} else {
+		result = hc.execute()
+	}
 
 	status := "SUCCESS"
 	if !result.Success {
@@ -411,6 +418,7 @@ type ServerConfig struct {
 	MaxFailures    int
 	NotifyInterval time.Duration
 	RetryDelay     time.Duration
+	DryRun         bool
 }
 
 var defaultServerConfig = ServerConfig{
