@@ -50,6 +50,10 @@ var (
 	retryDelay = flag.Duration("retry_delay",
 		healthcheck.DefaultServerConfig().RetryDelay,
 		"The time between notification RPC retries")
+
+	dryRun = flag.Bool("dry_run",
+		healthcheck.DefaultServerConfig().DryRun,
+		"Skips actual check and always return healthy as result")
 )
 
 func main() {
@@ -63,6 +67,7 @@ func main() {
 	cfg.EngineSocket = *engineSocket
 	cfg.MaxFailures = *maxFailures
 	cfg.RetryDelay = *retryDelay
+	cfg.DryRun = *dryRun
 
 	hc := healthcheck.NewServer(&cfg)
 	server.ShutdownHandler(hc)
