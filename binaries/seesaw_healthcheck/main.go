@@ -61,6 +61,7 @@ func main() {
 
 	cfg := healthcheck.DefaultServerConfig()
 
+	cfg.BatchDelay = *batchDelay
 	cfg.BatchSize = *batchSize
 	cfg.ChannelSize = *channelSize
 	cfg.EngineSocket = *engineSocket
