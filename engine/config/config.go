@@ -235,6 +235,8 @@ func protoToHealthcheck(p *pb.Healthcheck, defaultPort uint16) *Healthcheck {
 		hcMode = seesaw.HCModePlain
 	case pb.Healthcheck_DSR:
 		hcMode = seesaw.HCModeDSR
+	case pb.Healthcheck_TUN:
+		hcMode = seesaw.HCModeTUN
 	}
 	var hcType seesaw.HealthcheckType
 	switch p.GetType() {
